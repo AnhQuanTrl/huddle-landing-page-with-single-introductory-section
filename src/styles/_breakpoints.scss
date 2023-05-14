@@ -1,0 +1,14 @@
+$breakpoints: (
+  "sm": (
+    max-width: 500px,
+  ),
+  "md": (
+    max-width: 1300px,
+  ),
+);
+
+@mixin respond-to($breakpoint) {
+  @media #{inspect(map-get($breakpoints, $breakpoint))} {
+    @content;
+  }
+}

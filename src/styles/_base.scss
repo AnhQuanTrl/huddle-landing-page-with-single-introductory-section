@@ -1,0 +1,66 @@
+@use "sass:list";
+
+:root {
+  --ratio: 1.5;
+  --t-ratio: 1.2;
+
+  /* 15px */
+  font-size: 93.75%;
+
+  @include respond-to("sm") {
+    --ratio: 1.25;
+    font-size: 87.5%;
+  }
+
+  /* Modular Scale */
+  @each $exponential in $exponentials {
+    @if $exponential == 0 {
+      --s#{$exponential}: 1rem;
+    } @else if $exponential < 0 {
+      --s#{$exponential}: calc(var(--s#{$exponential + 1}) / var(--ratio));
+    } @else {
+      --s#{$exponential}: calc(var(--s#{$exponential - 1}) * var(--ratio));
+    }
+  }
+
+  /* Typography scale */
+  @each $exponential in $exponentials {
+    @if $exponential == 0 {
+      --t#{$exponential}: 1rem;
+    } @else if $exponential < 0 {
+      --t#{$exponential}: calc(var(--t#{$exponential + 1}) / var(--t-ratio));
+    } @else {
+      --t#{$exponential}: calc(var(--t#{$exponential - 1}) * var(--t-ratio));
+    }
+  }
+}
+
+@function modular_scale($exponential) {
+  @if index($exponentials, $exponential) != null {
+    @return var(--s#{$exponential});
+  }
+  @error "No such scale exist for exponential: #{$exponential}";
+}
+
+@function typography_scale($exponential) {
+  @if index($exponentials, $exponential) != null {
+    @return var(--t#{$exponential});
+  }
+  @error "No such scale exist for exponential: #{$exponential}";
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  color: white;
+  font-size: typography_scale(1);
+  line-height: 2;
+
+  @include respond-to("md") {
+    font-size: typography_scale(0);
+  }
+
+  @include respond-to("sm") {
+    text-align: center;
+  }
+}

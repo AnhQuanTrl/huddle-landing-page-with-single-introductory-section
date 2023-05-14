@@ -1,0 +1,25 @@
+@each $exponential in $exponentials {
+  .mg-s#{$exponential} {
+    margin: modular_scale($exponential);
+  }
+
+  .mg-top-s#{$exponential} {
+    margin-top: modular_scale($exponential);
+  }
+
+  .pd-s#{$exponential} {
+    padding: modular_scale($exponential);
+  }
+
+  .pd-bottom-s#{$exponential} {
+    padding-bottom: modular_scale($exponential);
+  }
+
+  .pd-inline-s#{$exponential} {
+    padding-inline: modular_scale($exponential);
+  }
+
+  .mg-right-s#{$exponential} {
+    margin-right: modular_scale($exponential);
+  }
+}

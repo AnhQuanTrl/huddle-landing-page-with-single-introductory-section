@@ -1,0 +1,105 @@
+.hero {
+  height: 100vh;
+  background-image: url("../../images/bg-desktop.svg");
+  background-color: $color-primary;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  grid-template-rows: 2fr 7fr 1fr;
+
+  padding-inline: modular_scale(3);
+
+  @include respond-to("md") {
+    grid-template-rows: 2fr 8fr 1fr;
+    column-gap: modular_scale(1);
+  }
+
+  @include respond-to("sm") {
+    grid-template-rows: 1fr 2fr 3fr 1fr;
+    grid-template-columns: none;
+    background-image: url("../../images/bg-mobile.svg");
+    background-position: 0 0;
+    height: auto;
+  }
+}
+
+.hero__logo {
+  grid-column: 1 / end;
+  align-self: center;
+}
+
+.hero__logo-img {
+  height: typography_scale(6);
+
+  @include respond-to("sm") {
+    height: typography_scale(4);
+  }
+}
+
+.hero__illustration {
+  align-self: center;
+}
+
+.hero__intro {
+  margin-top: modular-scale(3);
+
+  @include respond-to("md") {
+    margin-top: 0;
+    align-self: center;
+  }
+}
+
+.hero__heading {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: typography_scale(5);
+  line-height: 1.5;
+
+  @include respond-to("md") {
+    font-size: typography_scale(4);
+  }
+}
+
+.hero__call-to-action {
+  padding: 7px 65px;
+  border-radius: 100px;
+  border: none;
+  color: $color-primary;
+  box-shadow: 0 0.5rem 1rem rgba($color: #000, $alpha: 0.4);
+}
+
+.hero__call-to-action:hover {
+  background-color: $color-secondary;
+  color: white;
+}
+
+.hero__social-networks {
+  margin-left: auto;
+  grid-column: 1 / end;
+
+  @include respond-to("sm") {
+    margin-inline: auto;
+    margin-top: auto;
+    margin-bottom: modular_scale(1);
+  }
+}
+
+.social-medias {
+  color: white;
+  border: 2px solid white;
+  display: inline-flex;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1.3rem;
+}
+
+.social-medias:hover {
+  color: $color-secondary;
+  border: 2px solid $color-secondary;
+}
